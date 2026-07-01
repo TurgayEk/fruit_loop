@@ -1,36 +1,33 @@
 import random
 
+
 class Grid:
-    """Representerar spelplanen. Du kan ändra standardstorleken och tecknen för olika rutor. """
+
     width = 36
     height = 12
-    empty = "."  # Tecken för en tom ruta
-    wall = "■"   # Tecken för en ogenomtränglig vägg
+    empty = "."
+    wall = "#"
+
 
     def __init__(self):
-        """Skapa ett objekt av klassen Grid"""
-        # Spelplanen lagras i en lista av listor. Vi använder "list comprehension" för att sätta tecknet för "empty" på varje plats på spelplanen.
-        self.data = [[self.empty for y in range(self.width)] for z in range(
+            self.data = [[self.empty for y in range(self.width)] for z in range(
             self.height)]
 
-
     def get(self, x, y):
-        """Hämta det som finns på en viss position"""
+
         return self.data[y][x]
 
     def set(self, x, y, value):
-        """Ändra vad som finns på en viss position"""
+
         self.data[y][x] = value
 
     def set_player(self, player):
         self.player = player
 
     def clear(self, x, y):
-        """Ta bort item från position"""
         self.set(x, y, self.empty)
 
     def __str__(self):
-        """Gör så att vi kan skriva ut spelplanen med print(grid)"""
         xs = ""
         for y in range(len(self.data)):
             row = self.data[y]
@@ -42,9 +39,8 @@ class Grid:
             xs += "\n"
         return xs
 
-
     def make_walls(self):
-        """Skapa väggar runt hela spelplanen"""
+
         for i in range(self.height):
             self.set(0, i, self.wall)
             self.set(self.width - 1, i, self.wall)
@@ -53,18 +49,42 @@ class Grid:
             self.set(j, 0, self.wall)
             self.set(j, self.height - 1, self.wall)
 
+        wall_row = self.height // 3
+        gap_column = self.width // 2
+        for x in range(4, self.width - 4):
+            if x == gap_column:
+                continue
+            self.set(x, wall_row, self.wall)
 
-    # Används i filen pickups.py
+        wall_column = (self.width * 2) // 3
+        gap_row = self.height // 2
+        for y in range(2, self.height - 2):
+            if y == gap_row:
+                continue
+            self.set(wall_column, y, self.wall)
+
+    def is_wall(self, x, y):
+
+        if not (0 <= x < self.width and 0 <= y < self.height):
+            return True
+        return self.get(x, y) == self.wall
+
     def get_random_x(self):
-        """Slumpa en x-position på spelplanen"""
-        return random.randint(0, self.width-1)
+
+        return random.randint(0, self.width - 1)
 
     def get_random_y(self):
-        """Slumpa en y-position på spelplanen"""
-        return random.randint(0, self.height-1)
 
+        return random.randint(0, self.height - 1)
 
     def is_empty(self, x, y):
-        """Returnerar True om det inte finns något på aktuell ruta"""
+
         return self.get(x, y) == self.empty
 
+    def get_random_empty_position(self):
+
+        while True:
+            x = self.get_random_x()
+            y = self.get_random_y()
+            if self.is_empty(x, y):
+                return x, y

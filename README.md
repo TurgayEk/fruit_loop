@@ -1,54 +1,65 @@
-# Examination
+# Fruit Loop
 
-Individuell examinationsuppgift i kursen Programmering med Python.
-
-## Instruktioner
-Detta är filen `README.md`. Du ska beskriva projektet och hur man startar det. Du får ändra allt innehåll i denna.
-
-Byt gärna namn på projektet så att det inte heter "exam_template" när du lämnar in.
-
-Om något i instruktionerna är oklart - fråga läraren, skriv i någon öppen Discord-kanal eller fråga en AI.
-
----
-
+Ett terminalspel där du samlar frukter och försöker ta dig ut genom utgången.
 
 ## Starta projektet
 
-För att starta mitt projekt skriver man följande i terminalen, medan man står i projektets rotmapp.
+Skriv komando i terminalen medan du står i projektets rotmapp:
 
-```commandline
+```
 python -m src.game
 ```
 
+## Hur man spelar
+
+Använd tangenterna för att styra spelaren `@` runt på kartan:
+
+| Tangent | Rörelse |
+|---------|---------|
+| `w` | Upp |
+| `s` | Ner |
+| `a` | Vänster |
+| `d` | Höger |
+| `i` | Visa inventory |
+| `j` + riktning (t.ex. `jw`) | Hoppa två steg |
+| `q` | Avsluta spelet |
+
+## Symboler på kartan
+
+| Symbol | Betydelse |
+|--------|-----------|
+| `@` | Spelaren |
+| `#` | Vägg |
+| `?` | Frukt (+20 poäng) |
+| `^` | Fälla (-10 poäng) |
+| `K` | Nyckel |
+| `C` | Kista (+100 poäng, kräver nyckel) |
+| `S` | Spade (gräver bort en vägg) |
+| `E` | Utgång |
+
+## Mål
+
+Samla allt på kartan och gå sedan till utgången `E` för att vinna.
+Obs: varje steg du tar kostar 1 poäng, så rör dig smart!
+
 ## Vad jag har gjort
-Här kan du skriva vilka kriterier du har arbetat med.
 
-*Du kan använda emojis för att visa om du är klar med ett krav.* ✅❌
+| Version 1 | Status |
+|-----------|--------|
+| A - Spelaren börjar nära mitten | ✅ |
+| B - Rörelse i 4 riktningar (WASD) | ✅ |
+| C - Kan inte gå igenom väggar | ✅ |
+| D - Frukter ger 20 poäng | ✅ |
+| E - Inventory sparas i en lista | ✅ |
+| F - Kommandot "i" visar inventory | ✅ |
+| G - Varje steg kostar 1 poäng | ✅ |
+| H - Väggar byggda med loopar | ✅ |
 
-|Version 1|Status|
-|---------|------|
-|A        | ?    |
-|B        |      |
-|C        |      |
-|D        |      |
-|E        |      |
-|F        |      |
-|G        |      |
-|H        |      |
-
-|Version 2|Status|
-|---------|------|
-|I        |      |
-|J        |      |
-|K        |      |
-|L        |      |
-|M        |      |
-|N        |      |
-
-|Version 3|Status|
-|---------|------|
-|O        |      |
-|P        |      |
-|Q        |      |
-|R        |      |
-|S        |      |
+| Version 2 | Status |
+|-----------|--------|
+| I - Fällor (-10 poäng, ligger kvar) | ✅ |
+| J - Spade gräver bort en vägg | ✅ |
+| K - Nycklar och kistor (+100 poäng) | ✅ |
+| L - Ny frukt varje 25:e drag | ✅ |
+| M - Utgång när allt är samlat | ✅ |
+| N - Hoppa med j + riktning | ✅ |
